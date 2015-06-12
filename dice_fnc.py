@@ -49,10 +49,12 @@ def roll_dice(current_dice):
     roll_hits = 0 # as in shadowrun 5e
     roll_misses = 0 # as in shadowrun 5e
     required_rolls = int(input(("How many d{} do you want to roll: ").format(current_dice.type)))
-    required_rolls = check_integer_loop(required_rolls,0,100)
+    required_rolls = check_integer_loop(required_rolls,0,999)
+    modifier = int(input("Do you want to add any modifiers? (Input 0 if not): "))
+    modifier = check_integer_loop(modifier,-999,999)
     print("Lets roll!")
     while completed_rolls < required_rolls:
-        current_roll_result = random.randint(1,current_dice.type)
+        current_roll_result = random.randint(1,current_dice.type) + modifier
         total_roll_value += current_roll_result
         if total_roll_value >= 5:
             roll_hits += 1
