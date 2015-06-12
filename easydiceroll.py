@@ -23,6 +23,8 @@ def menu_choice(choice):
 	if choice == 1:
 		""" roll dice! """
 		print("Lets roll a dice!")
+		my_dice.roll_this_dice()
+		input("Press any key to return to the menu")
 	elif choice == 2:
 		""" choose dice type! """
 		print("Lets change the dice!")

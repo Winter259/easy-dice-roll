@@ -44,5 +44,20 @@ def check_integer_loop(integer,lower,upper):
     return integer
 
 def roll_dice(current_dice):
-    roll_amount = int(input(("How many d% do you want to roll?") % current_dice))
-    roll_amount = check_integer_loop(roll_amount,0,100)
+    completed_rolls = 0
+    total_roll_value = 0
+    roll_hits = 0 # as in shadowrun 5e
+    roll_misses = 0 # as in shadowrun 5e
+    required_rolls = int(input(("How many d{} do you want to roll: ").format(current_dice.type)))
+    required_rolls = check_integer_loop(required_rolls,0,100)
+    print("Lets roll!")
+    while completed_rolls < required_rolls:
+        current_roll_result = random.randint(1,current_dice.type)
+        total_roll_value += current_roll_result
+        if total_roll_value >= 5:
+            roll_hits += 1
+        elif total_roll_value == 1:
+            roll_misses += 1
+        print("Roll {} of {} with a d{}: {}".format((completed_rolls + 1),required_rolls,current_dice.type,current_roll_result))
+        completed_rolls += 1
+    print("Roll Value Sum: {} Total Hits: {} Total Misses: {}".format(total_roll_value,roll_hits,roll_misses))
